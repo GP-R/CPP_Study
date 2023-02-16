@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-    short num = 10;
-    short num1 = 10;
-    short num2 = 10;
-    short num3 = 10;
-    short num4 = 10;
+    __int64 num = 10;
+    __int64 num1 = 10;
+    __int64 num2 = 10;
+    __int64 num3 = 10;
+    __int64 num4 = 10;
     return 0;
 }
 
