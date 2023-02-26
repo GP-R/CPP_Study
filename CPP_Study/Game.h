@@ -1,16 +1,20 @@
 #pragma once
-#include"Player.h"
+
+
+class Player;
+class Field;
 
 class Game
 {
 public:
-	Game() : _player(nullptr)
+	Game() : _player(nullptr), _field(nullptr)
 	{
 
 	}
 	virtual ~Game()
 	{
-		delete _player;
+		if(_player != nullptr)
+			delete _player;
 	}
 
 	void Init();
@@ -19,5 +23,6 @@ public:
 	void CreatePlayer();
 private:
 	Player* _player;
+	Field* _field;
 };
 

@@ -1,11 +1,12 @@
 #include "Game.h"
 #include <iostream>
 using namespace std;
-
+#include"Player.h"
+#include "Field.h"
 
 void Game::Init()
 {
-	
+	_field = new Field();
 }
 
 void Game::Update()
@@ -13,7 +14,13 @@ void Game::Update()
 	if (_player == nullptr)
 		CreatePlayer();
 	
-	
+	if (_player->IsDead())
+	{
+		delete _player;
+		_player = nullptr;
+		CreatePlayer();
+	}
+	_field->Update(_player);
 }
 
 void Game::CreatePlayer()

@@ -2,9 +2,9 @@
 #include "Creature.h"
 
 enum PlayerType {
-	PT_Knight = 0,
-	PT_Archer = 1,
-	PT_Mage = 2,
+	PT_Knight = 1,
+	PT_Archer = 2,
+	PT_Mage = 3,
 
 };
 class Player : public Creature
@@ -19,6 +19,8 @@ public:
 	{
 
 	}
+
+	virtual void PrintInfo() override;
 private:
 	int _playerType;
 };

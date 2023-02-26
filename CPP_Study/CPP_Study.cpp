@@ -3,11 +3,13 @@ using namespace std;
 #include"Game.h"
 int main()
 {
-	Game* game;
-	game.Init();
+	srand((unsigned int)time(nullptr));
+
+	Game* game = new Game();
+	game->Init();
 	while (true)
 	{
-		game.Update();
+		game->Update();
 
 	}
 	return 0;
