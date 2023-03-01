@@ -1,4 +1,2 @@
-﻿  Field.cpp
-C:\Users\ryu\Desktop\CPP_Study\CPP_Study\Field.h(15,1): warning C4150: 불완전한 형식 'Monster'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
-C:\Users\ryu\Desktop\CPP_Study\CPP_Study\Field.h(3): message : 'Monster' 선언을 참조하십시오.
+﻿  CPP_Study.cpp
   CPP_Study.vcxproj -> C:\Users\ryu\Desktop\CPP_Study\x64\Debug\CPP_Study.exe
