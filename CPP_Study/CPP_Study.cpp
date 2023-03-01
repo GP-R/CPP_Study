@@ -1,191 +1,53 @@
 ﻿#include <iostream>
 using namespace std;
-#include <list>
+#include <vector>
 
-template<typename T>
-class Node
+bool findNum(vector<int>& v, int num)
 {
-public:
-	Node() : _prev(nullptr), _next(nullptr), _data(T())
+	for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
 	{
-
+		if (num == (*it))
+		{
+			return true;
+		}
 	}
+	return false;
+}
 
-	Node(const T& value) : _prev(nullptr), _next(nullptr), _data(value)
-	{
-
-	}
-public:
-	Node* _prev;
-	Node* _next;
-	T _data;
-};
-
-template<typename T>
-class Iterator
+int isDivEleven(vector<int>& v)
 {
-public:
-
-	Iterator() : _node(nullptr)
+	int count = 0;
+	for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
 	{
-
+		if ((*it)%11 == 0)
+		{
+			count++;
+		}
 	}
-
-	Iterator(Node<T>* node) : _node(node)
-	{
-
-	}
-
-	Iterator& operator++()
-	{
-		_node = _node->_next;
-		return *this;
-	}
-
-	Iterator operator++(int)
-	{
-		Iterator<T> temp = *this;
-		_node = _node->_next;
-		return temp;
-	}
-
-	Iterator& operator--()
-	{
-		_node = _node->_prev;
-		return *this;
-	}
-
-	Iterator operator--(int)
-	{
-		Iterator<T> temp = *this;
-		_node = _node->_prev;
-		return temp;
-	}
-
-	T& operator*()
-	{
-		return _node->_data;
-	}
-
-	bool operator==(const Iterator& right)
-	{
-		return _node == right._node;
-	}
-	bool operator!=(const Iterator& right)
-	{
-		return _node != right._node;
-	}
-
-
-
-
-
-public:
-	Node<T>* _node;
-};
-
-
-
-
-template<typename T>
-class List
-{
-public:
-	List() : _size(0)
-	{
-		_header = new Node<T>();
-		_header->_next = _header;
-		_header->_prev = _header;
-	}
-	~List()
-	{
-		while (_size > 0)
-			pop_back();
-
-		delete _header;
-	}
-
-	void push_back(const T& value)
-	{
-		AddNode(_header, value);
-		
-	}
-
-	void pop_back()
-	{
-		RemoveNode(_header->_prev);
-	}
-
-	Node<T>* RemoveNode(Node<T>* node)
-	{
-		Node<T>* prevNode = node->_prev;
-		Node<T>* nextNode = node->_next;
-		
-		prevNode->_next = nextNode;
-		nextNode->_prev = prevNode;
-
-		delete node;
-		_size--;
-
-		return nextNode;
-	}
-	Node<T>* AddNode(Node<T>* before, const T& value)
-	{
-		Node<T>* node = new Node<T>(value);
-		Node<T>* prevNode = before->_prev;
-
-		prevNode->_next = node;
-		node->_prev = prevNode;
-
-		node->_next = before;
-		before->_prev = node;
-
-		_size++;
-
-		return node;
-	}
-
-public:
-
-	typedef Iterator<T> iterator;
-
-	iterator begin() { return iterator(_header->_next); }
-	iterator end() { return iterator(_header); }
-
-	iterator insert(iterator it, const T& value)
-	{
-		return iterator(AddNode(it._node, value));
-	}
-	iterator erase(iterator it)
-	{
-		Node<T>* node = RemoveNode(it._node);
-		return iterator(node);
-	}
-public:
-
-	Node<T>* _header;
-	int _size;
-};
+	return count;
+}
 
 int main()
 {
-	List<int> li;
-	List<int>::iterator eraseIt;
-
-	for (int i = 0; i < 10; i++)
+	srand(static_cast<unsigned int>(time(nullptr)));
+	vector<int> v;
+	for (int i = 1; i < 100; i++)
 	{
-		if (i == 5)
-		{
-			eraseIt = li.insert(li.end(), i);
-		}
-		else
-		{
-			li.push_back(i);
-		}
+		//int num = rand() % 100;
+		v.push_back(i);
 	}
-	li.erase(eraseIt);
+	int input;
+	cin >> input;
+	bool result = findNum(v, input);
+	cout << result << endl;
+	int elecount = isDivEleven(v);
+	cout << elecount << endl;
 
-	for (List<int>::iterator it = li.begin(); it != li.end(); ++it)
-		cout << *it << endl;
+	for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
+	{
+		(*it) = (*it) * 3;
+		cout << (*it) << endl;
+	}
+	
 	return 0;
 }
